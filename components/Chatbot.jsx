@@ -15,13 +15,17 @@ const Chatbot = () => {
 
   // Sample responses for demonstration
   const sampleResponses = {
-    'deduction': "Based on your uploaded documents, you qualify for a standard deduction of $12,950. However, if you itemize your deductions, you might be able to deduct more. Would you like me to analyze which approach would be better for your situation?",
-    'retirement': "You're currently contributing $6,000 to your 401(k). The maximum contribution limit for 2025 is $22,500. Increasing your contributions could lower your taxable income. Would you like me to calculate how much you could save?",
-    'deadline': "The tax filing deadline for 2024 taxes is April 15, 2025. If you need more time, you can request an extension until October 15, 2025. However, remember that an extension to file is not an extension to pay any taxes owed.",
-    'hsa': "Health Savings Accounts (HSAs) offer triple tax benefits: tax-deductible contributions, tax-free growth, and tax-free withdrawals for qualified medical expenses. Your current contribution is $3,650, and the 2025 limit for individual coverage is $4,150.",
-    'help': "I can help with tax calculations, deduction opportunities, filing status questions, retirement account advice, and more. Just ask your tax-related question!",
-    'refund': "Based on your current information, I estimate you'll receive a tax refund of approximately $1,850. This is because your tax withholdings exceed your projected tax liability."
-  };
+  'deduction': "You may qualify for deductions like Section 80C, 80D, HRA, and education loan interest.",
+  'retirement': "You can reduce taxes by investing in retirement schemes like NPS or EPF.",
+  'deadline': "The tax filing deadline is July 31 for most individuals in India.",
+  'refund': "You can check your refund status on the Income Tax e-filing portal.",
+  'salary': "Salary income is taxed under the head 'Income from Salary'. Standard deduction is ₹50,000.",
+  'investment': "Investments in ELSS, PPF, LIC, and NPS qualify for deduction under Section 80C.",
+  'gst': "GST is a consumption tax applied to goods and services in India.",
+  'capital gain': "Capital gains arise from sale of assets like property, stocks, or mutual funds.",
+  'itr': "ITR stands for Income Tax Return. It is used to report your income and tax liability.",
+  'help': "You can ask about deductions, GST, ITR filing, investments, and tax savings."
+};
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -53,14 +57,28 @@ const Chatbot = () => {
     let responseText = "I'm not sure about that. Could you provide more information or ask about a specific tax topic like deductions, retirement accounts, or filing deadlines?";
     
     const lowerInput = input.toLowerCase();
-    const keywords = Object.keys(sampleResponses);
-    
-    for (const keyword of keywords) {
-      if (lowerInput.includes(keyword)) {
-        responseText = sampleResponses[keyword];
-        break;
-      }
-    }
+
+if (lowerInput.includes("deduction") || lowerInput.includes("80c")) {
+  responseText = sampleResponses["deduction"];
+}
+else if (lowerInput.includes("itr") || lowerInput.includes("return")) {
+  responseText = sampleResponses["itr"];
+}
+else if (lowerInput.includes("investment") || lowerInput.includes("tax saving")) {
+  responseText = sampleResponses["investment"];
+}
+else if (lowerInput.includes("gst")) {
+  responseText = sampleResponses["gst"];
+}
+else if (lowerInput.includes("refund")) {
+  responseText = sampleResponses["refund"];
+}
+else if (lowerInput.includes("deadline") || lowerInput.includes("last date")) {
+  responseText = sampleResponses["deadline"];
+}
+else {
+  responseText = "I can help with deductions, ITR filing, tax saving investments, GST, and refunds. Please ask a tax related question.";
+}
 
     const botResponse = {
       id: messages.length + 2,
