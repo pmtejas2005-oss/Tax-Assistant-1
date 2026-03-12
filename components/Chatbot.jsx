@@ -51,12 +51,12 @@ const Chatbot = () => {
     setLoading(true);
 
     // Simulate API call to backend
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    // Simulate API call
+await new Promise(resolve => setTimeout(resolve, 1500));
 
-    // Sample response logic based on keywords
-    let responseText = "I'm not sure about that. Could you provide more information or ask about a specific tax topic like deductions, retirement accounts, or filing deadlines?";
-    
-    const lowerInput = input.toLowerCase();
+let responseText = "I'm not sure about that.";
+
+const lowerInput = input.toLowerCase();
 
 if (lowerInput.includes("deduction") || lowerInput.includes("80c")) {
   responseText = sampleResponses["deduction"];
@@ -72,12 +72,6 @@ else if (lowerInput.includes("gst")) {
 }
 else if (lowerInput.includes("refund")) {
   responseText = sampleResponses["refund"];
-}
-else if (lowerInput.includes("deadline") || lowerInput.includes("last date")) {
-  responseText = sampleResponses["deadline"];
-}
-else {
-  responseText = "I can help with deductions, ITR filing, tax saving investments, GST, and refunds. Please ask a tax related question.";
 }
 
     const botResponse = {
